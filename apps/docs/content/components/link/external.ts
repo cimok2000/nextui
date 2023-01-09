@@ -23,15 +23,11 @@ const CustomLink = () => {
 export default function App() {
   return (
     <>
-      <Link href="#">
-        "First solve the problem. Then, write the code." - Jon Johnson.
-      </Link>
-      <Spacer />
       <Link href="#" isExternal color="success">
         "First solve the problem. Then, write the code." - Jon Johnson.
       </Link>
       <Spacer />
-      <Link href="#" isExternal externalIcon={<CustomLink />} color="success">
+      <Link href="#" isExternal externalIcon={<CustomLink />} color="secondary">
         "First solve the problem. Then, write the code." - Jon Johnson.
       </Link>
     </>
