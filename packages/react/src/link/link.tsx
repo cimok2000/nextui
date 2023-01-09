@@ -17,6 +17,7 @@ import StyledLink, {LinkVariantsProps} from "./link.styles";
 interface Props extends Omit<HTMLNextUIProps<"a">, keyof LinkVariantsProps> {
   children?: React.ReactNode | React.ReactNode[];
   isExternal?: boolean;
+  externalIcon?: React.ReactNode
 }
 
 export type LinkProps = Props & LinkVariantsProps & AriaLinkProps;
@@ -40,6 +41,7 @@ const Link = forwardRef<LinkProps, "a">((props, ref) => {
   const {
     children,
     isExternal = false,
+    externalIcon = <LinkIcon />,
     as,
     css,
     color = "default",
@@ -47,6 +49,11 @@ const Link = forwardRef<LinkProps, "a">((props, ref) => {
     className,
     ...otherProps
   } = props;
+
+  if(isExternal) {
+    otherProps.rel = otherProps.rel ?? 'noopener'
+    otherProps.target = otherProps.target ?? '_blank'
+  }
 
   const domRef = useDOMRef(ref);
 
@@ -89,7 +96,7 @@ const Link = forwardRef<LinkProps, "a">((props, ref) => {
     >
       <>
         {children}
-        {isExternal && <LinkIcon />}
+        {isExternal && externalIcon}
       </>
     </StyledLink>
   );
